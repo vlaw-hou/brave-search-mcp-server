@@ -1,8 +1,16 @@
+networks:
+  caddynet:
+    external: true
+
 services:
   mcp-server:
+    container_name: brave-mcp
     build: .
     cap_drop:
       - all
+    image: docker pull mcp/brave-search:latest
+    networks:
+      - caddynet
     deploy:
       restart_policy:
         condition: any
